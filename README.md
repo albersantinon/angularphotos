@@ -1,1 +1,1 @@
-# angularphotos.github.io
+# angularphotos website
