@@ -39,47 +39,58 @@
         /* ---------------- HERO ---------------- */
         header {
             text-align: center;
-            padding: 120px 20px 80px;
+            padding: 80px 20px 50px;
             animation: fadeIn 1.2s ease forwards;
         }
 
         h1 {
-            font-size: 64px;
+            font-size: 42px;
             font-weight: 600;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             margin: 0;
         }
 
         .tagline {
-            margin-top: 18px;
-            font-size: 22px;
+            margin-top: 14px;
+            font-size: 16px;
             opacity: 0.75;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
         }
 
         .bio {
-            margin-top: 28px;
-            font-size: 18px;
+            margin-top: 20px;
+            font-size: 15px;
             opacity: 0.65;
             line-height: 1.6;
         }
 
         /* ---------------- GALLERY ---------------- */
         .gallery {
-            padding: 40px 20px 100px;
-            max-width: 1500px;
+            padding: 20px 14px 60px;
+            max-width: 1400px;
             margin: auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
             animation: fadeIn 1.4s ease forwards;
+        }
+
+        @media (min-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 24px;
+                padding: 40px 20px 80px;
+            }
+            h1 { font-size: 64px; }
+            .tagline { font-size: 20px; }
+            .bio { font-size: 18px; }
         }
 
         .photo {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.45);
+            box-shadow: 0 0 25px rgba(0,0,0,0.45);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
@@ -92,7 +103,7 @@
 
         .photo:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 60px rgba(0,0,0,0.6);
+            box-shadow: 0 0 50px rgba(0,0,0,0.6);
         }
 
         .photo:hover img {
@@ -103,9 +114,9 @@
         /* ---------------- FOOTER ---------------- */
         footer {
             text-align: center;
-            padding: 50px;
+            padding: 40px;
             opacity: 0.5;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 1px;
         }
     </style>
