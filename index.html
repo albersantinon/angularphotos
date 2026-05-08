@@ -1,374 +1,153 @@
-<main>
-    <!-- Hero -->
-    <section class="hero" id="top">
-      <div class="hero-main reveal">
-        <div class="hero-kicker">Est. Visual Experiments</div>
-        <h1 class="hero-title">
-          <span>AngularPhotos</span>
-          <span>Photography · Motion</span>
-        </h1>
-        <p class="hero-tagline">
-          Frames shaped by light, memory and motion. <span>Modern digital, tuned to an analog heart.</span>
-        </p>
-        <div class="hero-ctas">
-          <a href="#work">
-            <button class="btn btn-primary" type="button">
-              <span>View Work</span>
-              <span class="btn-icon-dot" aria-hidden="true"></span>
-            </button>
-          </a>
-          <a href="#contact">
-            <button class="btn btn-secondary" type="button">
-              <span>Contact</span>
-              <span class="btn-icon-dot" aria-hidden="true"></span>
-            </button>
-          </a>
-        </div>
-        <div class="hero-meta-row">
-          <div class="hero-meta-block">
-            <span class="hero-meta-label">Focus</span>
-            <span class="hero-meta-value">Live music · Street · Editorial · Motion</span>
-          </div>
-          <div class="hero-meta-block">
-            <span class="hero-meta-label">Location</span>
-            <span class="hero-meta-value hero-meta-pill">
-              <span class="hero-meta-dot"></span>
-              <span>Between venues, streets &amp; small rooms</span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <aside class="hero-side reveal reveal-delay-2" aria-label="Film-inspired hero visual">
-        <div class="hero-side-inner">
-          <div class="hero-side-label">AngularPhotos · 35mm / Digital Hybrid</div>
-          <div class="hero-side-counter">00:00:03:12 · Frame 01 / 36</div>
-        </div>
-      </aside>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANGULAR PHOTOS — Cinematic Portfolio</title>
+
+    <!-- Helvetica Neue (fallback Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---------------- GLOBAL ---------------- */
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Inter, sans-serif;
+            background: #000;
+            color: #f2f2f2;
+            overflow-x: hidden;
+        }
+
+        /* Background cinematic blurred texture */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=60');
+            background-size: cover;
+            background-position: center;
+            filter: blur(22px) brightness(0.35) saturate(0.8);
+            z-index: -1;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---------------- HERO ---------------- */
+        header {
+            text-align: center;
+            padding: 80px 20px 50px;
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 600;
+            letter-spacing: 5px;
+            margin: 0;
+        }
+
+        .tagline {
+            margin-top: 14px;
+            font-size: 16px;
+            opacity: 0.75;
+            letter-spacing: 1.5px;
+        }
+
+        .bio {
+            margin-top: 20px;
+            font-size: 15px;
+            opacity: 0.65;
+            line-height: 1.6;
+        }
+
+        /* ---------------- GALLERY ---------------- */
+        .gallery {
+            padding: 20px 14px 60px;
+            max-width: 1400px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            animation: fadeIn 1.4s ease forwards;
+        }
+
+        @media (min-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 24px;
+                padding: 40px 20px 80px;
+            }
+            h1 { font-size: 64px; }
+            .tagline { font-size: 20px; }
+            .bio { font-size: 18px; }
+        }
+
+        .photo {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.45);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        .photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        }
+
+        .photo:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.15);
+        }
+
+        /* ---------------- FOOTER ---------------- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            opacity: 0.5;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>ANGULAR PHOTOS</h1>
+        <div class="tagline">PHOTOS & VIDEOS — VISUAL STORYTELLER</div>
+        <div class="bio">MCR ↔ VCE<br>Portfolio di Alberto Santinon</div>
+    </header>
+
+    <section class="gallery">
+
+        <!-- FOTO REALI DELLA TUA CARTELLA -->
+        <div class="photo"><img src="images/uno.jpg" alt=""></div>
+        <div class="photo"><img src="images/due.jpeg" alt=""></div>
+        <div class="photo"><img src="images/tre.jpeg" alt=""></div>
+        <div class="photo"><img src="images/quattro.jpg" alt=""></div>
+        <div class="photo"><img src="images/cinque.jpg" alt=""></div>
+        <div class="photo"><img src="images/sei.jpg" alt=""></div>
+        <div class="photo"><img src="images/sette.jpg" alt=""></div>
+        <div class="photo"><img src="images/otto.jpg" alt=""></div>
+        <div class="photo"><img src="images/nove.jpg" alt=""></div>
+
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
-      <div class="section-heading reveal">
-        <h2 class="section-title">About AngularPhotos</h2>
-        <div class="section-meta">Frame 05 / 36 · Contact Sheet Notes</div>
-      </div>
-      <div class="about-grid">
-        <div class="about-text reveal reveal-delay-1">
-          <p>
-            AngularPhotos è una pratica di fotografia e videografia che vive ai margini di palchi piccoli,
-            corridoi di backstage e strade illuminate solo da insegne e fari di auto. Il lavoro abbraccia il
-            movimento, il fuori fuoco e quei gesti minimi che di solito scivolano fuori dall’inquadratura.
-          </p>
-          <p>
-            Le camere digitali vengono trattate come corpi analogici caricati: ogni scatto è pensato, ogni sequenza
-            costruita come una traccia di un disco. Live set, prove, camminate notturne e dettagli di mani, cavi,
-            monitor e luci diventano un unico racconto visivo.
-          </p>
-          <p>
-            L’estetica nasce da flyer underground anni ’90, pellicola 35mm, contact sheet e una leggera sensibilità
-            giapponese per il vuoto e il silenzio tra le note. Moderno in superficie, nostalgico nel modo in cui
-            guarda la luce.
-          </p>
-          <div class="about-tags" aria-label="Primary focus areas">
-            <span class="tag">Music</span>
-            <span class="tag">Live Performances</span>
-            <span class="tag">Street Moments</span>
-            <span class="tag">Cinematic Storytelling</span>
-            <span class="tag">Documentary–Inspired Visuals</span>
-          </div>
-          <div class="about-meta">
-            <div class="about-meta-block">
-              <span class="about-meta-label">Approach</span>
-              <span class="about-meta-value">Editorial minimalism with an analog soul</span>
-            </div>
-            <div class="about-meta-block">
-              <span class="about-meta-label">Format</span>
-              <span class="about-meta-value">Stills · Motion · Live Sessions</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-portrait-wrap reveal reveal-delay-2">
-          <div class="about-frame">
-            <div class="about-frame-inner"></div>
-            <div class="about-frame-label">
-              <span>AngularPhotos</span>
-              <span>Photographer / Videographer</span>
-            </div>
-            <div class="about-stamp">Shot on Digital / Remembered as Film</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <footer>
+        © 2026 ANGULAR PHOTOS — All Rights Reserved
+    </footer>
 
-    <!-- Portfolio -->
-    <section class="section" id="work">
-      <div class="section-heading reveal">
-        <h2 class="section-title">Selected Frames</h2>
-        <div class="section-meta">Frames 08–20 / 36 · Archive Excerpts</div>
-      </div>
-      <div class="portfolio-meta-strip reveal reveal-delay-1">
-        <span>Live Music · Street · Editorial · Motion</span>
-        <span>Contact Sheet 02 · ISO 1600</span>
-      </div>
-      <div class="portfolio-grid" aria-label="Portfolio grid">
-        <figure class="photo reveal reveal-delay-1">
-          <img src="images/uno.jpg" loading="lazy" alt="AngularPhotos project image 1">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Backline Warmup</span>
-              <span>2024 · Live Music</span>
-            </div>
-            <span class="photo-meta-tag">Live Music</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-2">
-          <img src="images/due.jpeg" loading="lazy" alt="AngularPhotos project image 2">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Neon Alley, After Show</span>
-              <span>2023 · Street</span>
-            </div>
-            <span class="photo-meta-tag">Street</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-3">
-          <img src="images/tre.jpeg" loading="lazy" alt="AngularPhotos project image 3">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Soundcheck Silence</span>
-              <span>2024 · Editorial</span>
-            </div>
-            <span class="photo-meta-tag">Editorial</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-1">
-          <img src="images/quattro.jpg" loading="lazy" alt="AngularPhotos project image 4">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Stage Left Echo</span>
-              <span>2023 · Motion Still</span>
-            </div>
-            <span class="photo-meta-tag">Motion</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-2">
-          <img src="images/cinque.jpg" loading="lazy" alt="AngularPhotos project image 5">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>City Chorus</span>
-              <span>2022 · Street</span>
-            </div>
-            <span class="photo-meta-tag">Street</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-3">
-          <img src="images/sei.jpg" loading="lazy" alt="AngularPhotos project image 6">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Monitors &amp; Haze</span>
-              <span>2024 · Live Music</span>
-            </div>
-            <span class="photo-meta-tag">Live Music</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-1">
-          <img src="images/sette.jpg" loading="lazy" alt="AngularPhotos project image 7">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Quiet Rehearsal</span>
-              <span>2023 · Editorial</span>
-            </div>
-            <span class="photo-meta-tag">Editorial</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-2">
-          <img src="images/otto.jpg" loading="lazy" alt="AngularPhotos project image 8">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Midnight Crossing</span>
-              <span>2022 · Street</span>
-            </div>
-            <span class="photo-meta-tag">Street</span>
-          </figcaption>
-        </figure>
-        <figure class="photo reveal reveal-delay-3">
-          <img src="images/nove.jpg" loading="lazy" alt="AngularPhotos project image 9">
-          <figcaption class="photo-meta">
-            <div class="photo-meta-title">
-              <span>Encore Glow</span>
-              <span>2024 · Live Music</span>
-            </div>
-            <span class="photo-meta-tag">Live Music</span>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="portfolio-strip-bottom reveal reveal-delay-2">
-        <span>Contact Sheet Ref. AP–02</span>
-        <span>Shot somewhere between memory and light</span>
-      </div>
-    </section>
-
-    <!-- Featured project -->
-    <section class="section" id="featured">
-      <div class="section-heading reveal">
-        <h2 class="section-title">Featured Project</h2>
-        <div class="section-meta">Frame 21 / 36 · Long Play Sequence</div>
-      </div>
-      <article class="featured-card reveal reveal-delay-1">
-        <div class="featured-inner">
-          <div>
-            <div class="featured-header">
-              <span>Live Session · Short Film</span>
-              <span>Recorded in small rooms &amp; late trains</span>
-            </div>
-            <h3 class="featured-title">“Rooms That Remember Sound”</h3>
-            <p class="featured-subtitle">
-              Una sessione live cinematografica che segue una band indie tra sale prove, palchi stretti e le
-              camminate silenziose dopo l’ultimo accordo.
-            </p>
-            <p class="featured-body">
-              Il progetto vive tra documentario e videoclip: camera a mano, luce che brucia i bordi, fumo che
-              avvolge il pubblico. Ogni sequenza è pensata come una traccia: intro, build, ritornello, coda. Il
-              suono rimane fuori campo, ma la vibrazione dei monitor e dei cavi è sempre presente nell’immagine.
-            </p>
-            <div class="featured-meta-row">
-              <span class="featured-meta-pill">Live Music</span>
-              <span class="featured-meta-pill">Cinematic Documentary</span>
-              <span class="featured-meta-pill">Shot Digital / Graded Like Film</span>
-            </div>
-            <button class="featured-cta" type="button">
-              <span>View Project Treatment</span>
-              <span class="featured-cta-dot" aria-hidden="true"></span>
-            </button>
-          </div>
-          <div class="featured-visual" aria-hidden="true">
-            <div class="featured-visual-inner"></div>
-            <div class="featured-timecode">00:12:08:24 · Take 03</div>
-            <div class="featured-strip">AngularPhotos · LP–01</div>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <!-- Instagram -->
-    <section class="section" id="instagram">
-      <div class="section-heading reveal">
-        <h2 class="section-title">Ongoing Archive</h2>
-        <div class="section-meta">Frame 28 / 36 · Social Contact Sheet</div>
-      </div>
-      <div class="insta-header reveal reveal-delay-1">
-        <div>
-          <h3 class="insta-title">Follow the ongoing archive</h3>
-          <p class="insta-subtitle">
-            Nuovi frame, live session e frammenti di strada arrivano prima qui—come un contact sheet continuo di
-            quello che la lente sta ascoltando.
-          </p>
-        </div>
-        <div class="insta-cta-row">
-          <a href="https://instagram.com/angularphotos" target="_blank" rel="noopener noreferrer">
-            <button class="btn btn-secondary" type="button">
-              <span>Open Instagram</span>
-              <span class="btn-icon-dot" aria-hidden="true"></span>
-            </button>
-          </a>
-          <div class="insta-handle">@angularphotos</div>
-        </div>
-      </div>
-      <div class="insta-grid reveal reveal-delay-2" aria-hidden="true">
-        <div class="insta-grid-header">
-          <span>Contact Sheet Preview</span>
-          <span>Not live · Layout Study</span>
-        </div>
-        <div class="insta-grid-inner">
-          <div class="insta-cell">
-            <div class="insta-cell-label">Live</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">Street</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">Motion</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">Backstage</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">35mm</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">Details</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">Crowd</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">Transit</div>
-          </div>
-          <div class="insta-cell">
-            <div class="insta-cell-label">Night</div>
-          </div>
-        </div>
-        <div class="insta-strip">
-          <span>Roll AP–IG / 2026</span>
-          <span>Frames shaped by light, memory and motion</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
-      <div class="section-heading reveal">
-        <h2 class="section-title">Contact &amp; Collaborations</h2>
-        <div class="section-meta">Frame 34 / 36 · Notes in the Margin</div>
-      </div>
-      <div class="contact-inner reveal reveal-delay-1">
-        <div class="contact-content">
-          <div>
-            <h3 class="contact-title">Let’s build something worth remembering.</h3>
-            <p class="contact-body">
-              Disponibile per live session, tour diary, ritratti editoriali e piccoli film che vogliono suonare
-              come un LP. Progetti che lasciano spazio a grana, respiro e imprevisto sono sempre benvenuti.
-            </p>
-            <p class="contact-cta">
-              “Let’s build something worth remembering.”
-            </p>
-            <div class="contact-meta" aria-label="Contact details">
-              <div class="contact-meta-row">
-                <span class="contact-label">Email</span>
-                <a class="contact-link" href="mailto:hello@angularphotos.studio">hello@angularphotos.studio</a>
-              </div>
-              <div class="contact-meta-row">
-                <span class="contact-label">Instagram</span>
-                <a class="contact-link" href="https://instagram.com/angularphotos" target="_blank" rel="noopener noreferrer">@angularphotos</a>
-              </div>
-              <div class="contact-availability">
-                Currently open for select freelance collaborations, tour runs and long–form visual projects.
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="contact-film-strip">
-              <span>AngularPhotos</span>
-              <span class="contact-film-center">Negative Strip · AP–CONTACT</span>
-              <span>2026</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">AngularPhotos © 2026</div>
-        <div class="footer-meta">Shot somewhere between memory and light.</div>
-      </div>
-      <div class="footer-bottom">
-        <span>Frame 36 / 36 · End of Roll</span>
-        <span>Rewind · Reload · Continue</span>
-      </div>
-    </div>
-  </footer>
-</div>
+</body>
+</html>
