@@ -3,112 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angular Photos – Retro Film Portfolio</title>
+    <title>ANGULAR PHOTOS — Portfolio</title>
 
-    <!-- Font stile titoli anni '90 -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+    <!-- Helvetica Neue (fallback: Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* ----------- BASE STYLE ----------- */
         body {
             margin: 0;
-            background: #0d0d0d;
-            color: #e5e5e5;
-            font-family: 'Inter', sans-serif;
+            font-family: "Helvetica Neue", Inter, sans-serif;
+            background: #0a0a0a;
+            color: #f2f2f2;
             overflow-x: hidden;
         }
 
-        /* Effetto grana pellicola */
+        /* Background blur texture */
         body::before {
             content: "";
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.18;
-            mix-blend-mode: overlay;
-            z-index: 9999;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=60');
+            background-size: cover;
+            background-position: center;
+            filter: blur(18px) brightness(0.35);
+            z-index: -1;
         }
 
+        /* ----------- HEADER ----------- */
         header {
             text-align: center;
-            padding: 60px 20px 30px;
+            padding: 80px 20px 40px;
         }
 
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            letter-spacing: 2px;
+        h1 {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: 4px;
             margin: 0;
-            color: #f2e9d8;
-            text-shadow: 0 0 6px rgba(255, 220, 180, 0.3);
         }
 
-        header p {
-            margin-top: 10px;
-            font-size: 1.1rem;
-            opacity: 0.7;
+        .subtitle {
+            margin-top: 12px;
+            font-size: 20px;
+            opacity: 0.75;
+            letter-spacing: 1px;
         }
 
-        /* Galleria stile pellicola */
+        .bio {
+            margin-top: 25px;
+            font-size: 16px;
+            opacity: 0.65;
+            line-height: 1.6;
+        }
+
+        /* ----------- GALLERY ----------- */
         .gallery {
+            padding: 40px 20px 80px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            padding: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            max-width: 1400px;
+            margin: auto;
         }
 
-        .frame {
-            background: #111;
-            padding: 12px;
-            border: 2px solid #2a2a2a;
-            border-radius: 4px;
-            position: relative;
-            box-shadow: 0 0 15px rgba(0,0,0,0.6);
-        }
-
-        /* Bordi tipo fotogramma 35mm */
-        .frame::before,
-        .frame::after {
-            content: "";
-            position: absolute;
+        .photo {
             width: 100%;
-            height: 12px;
-            left: 0;
-            background: repeating-linear-gradient(
-                to right,
-                #000 0 10px,
-                #222 10px 20px
-            );
-            opacity: 0.35;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 25px rgba(0,0,0,0.4);
         }
 
-        .frame::before { top: -12px; }
-        .frame::after { bottom: -12px; }
-
-        .frame img {
+        .photo img {
             width: 100%;
-            height: auto;
-            display: block;
-            filter: contrast(0.9) saturate(0.8);
-            transition: 0.3s ease;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.35s ease;
         }
 
-        .frame img:hover {
-            transform: scale(1.03);
-            filter: contrast(1) saturate(1);
+        .photo img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
         }
 
+        /* ----------- FOOTER ----------- */
         footer {
             text-align: center;
             padding: 40px;
-            opacity: 0.6;
-            font-size: 0.9rem;
-        }
-
-        a {
-            color: #d7b98c;
-            text-decoration: none;
+            opacity: 0.5;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -116,53 +101,28 @@
 <body>
 
     <header>
-        <h1>Angular Photos</h1>
-        <p>Portfolio analogico – estetica 35mm, anni ’90</p>
+        <h1>ANGULAR PHOTOS</h1>
+        <div class="subtitle">PHOTOS & VIDEOS — VISUAL STORYTELLER</div>
+        <div class="bio">MCR ↔ VCE<br>Portfolio di Alberto Santinon</div>
     </header>
 
     <section class="gallery">
 
-        <!-- Foto reali presenti nella tua cartella images -->
-        <div class="frame">
-            <img src="images/uno.jpg" alt="Foto 1">
-        </div>
-
-        <div class="frame">
-            <img src="images/due.jpeg" alt="Foto 2">
-        </div>
-
-        <div class="frame">
-            <img src="images/tre.jpeg" alt="Foto 3">
-        </div>
-
-        <div class="frame">
-            <img src="images/quattro.jpg" alt="Foto 4">
-        </div>
-
-        <div class="frame">
-            <img src="images/cinque.jpg" alt="Foto 5">
-        </div>
-
-        <div class="frame">
-            <img src="images/sei.jpg" alt="Foto 6">
-        </div>
-
-        <div class="frame">
-            <img src="images/sette.jpg" alt="Foto 7">
-        </div>
-
-        <div class="frame">
-            <img src="images/otto.jpg" alt="Foto 8">
-        </div>
-
-        <div class="frame">
-            <img src="images/nove.jpg" alt="Foto 9">
-        </div>
+        <!-- FOTO REALI DELLA TUA CARTELLA -->
+        <div class="photo"><img src="images/uno.jpg" alt=""></div>
+        <div class="photo"><img src="images/due.jpeg" alt=""></div>
+        <div class="photo"><img src="images/tre.jpeg" alt=""></div>
+        <div class="photo"><img src="images/quattro.jpg" alt=""></div>
+        <div class="photo"><img src="images/cinque.jpg" alt=""></div>
+        <div class="photo"><img src="images/sei.jpg" alt=""></div>
+        <div class="photo"><img src="images/sette.jpg" alt=""></div>
+        <div class="photo"><img src="images/otto.jpg" alt=""></div>
+        <div class="photo"><img src="images/nove.jpg" alt=""></div>
 
     </section>
 
     <footer>
-        © 2026 Angular Photos — Tutti i diritti riservati
+        © 2026 ANGULAR PHOTOS — All Rights Reserved
     </footer>
 
 </body>
