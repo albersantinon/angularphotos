@@ -3,97 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANGULAR PHOTOS — Portfolio</title>
+    <title>ANGULAR PHOTOS — Cinematic Portfolio</title>
 
-    <!-- Helvetica Neue (fallback: Inter) -->
+    <!-- Helvetica Neue (fallback Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* ----------- BASE STYLE ----------- */
+        /* ---------------- GLOBAL ---------------- */
         body {
             margin: 0;
             font-family: "Helvetica Neue", Inter, sans-serif;
-            background: #0a0a0a;
+            background: #000;
             color: #f2f2f2;
             overflow-x: hidden;
         }
 
-        /* Background blur texture */
+        /* Background cinematic blurred texture */
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=60');
+            background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=60');
             background-size: cover;
             background-position: center;
-            filter: blur(18px) brightness(0.35);
+            filter: blur(22px) brightness(0.35) saturate(0.8);
             z-index: -1;
         }
 
-        /* ----------- HEADER ----------- */
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---------------- HERO ---------------- */
         header {
             text-align: center;
-            padding: 80px 20px 40px;
+            padding: 120px 20px 80px;
+            animation: fadeIn 1.2s ease forwards;
         }
 
         h1 {
-            font-size: 56px;
+            font-size: 64px;
             font-weight: 600;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             margin: 0;
         }
 
-        .subtitle {
-            margin-top: 12px;
-            font-size: 20px;
+        .tagline {
+            margin-top: 18px;
+            font-size: 22px;
             opacity: 0.75;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .bio {
-            margin-top: 25px;
-            font-size: 16px;
+            margin-top: 28px;
+            font-size: 18px;
             opacity: 0.65;
             line-height: 1.6;
         }
 
-        /* ----------- GALLERY ----------- */
+        /* ---------------- GALLERY ---------------- */
         .gallery {
-            padding: 40px 20px 80px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
-            max-width: 1400px;
+            padding: 40px 20px 100px;
+            max-width: 1500px;
             margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+            animation: fadeIn 1.4s ease forwards;
         }
 
         .photo {
-            width: 100%;
-            height: 100%;
+            position: relative;
             overflow: hidden;
-            border-radius: 8px;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 0 25px rgba(0,0,0,0.4);
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.45);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.35s ease;
+            transition: transform 0.6s ease, filter 0.6s ease;
         }
 
-        .photo img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1);
+        .photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 60px rgba(0,0,0,0.6);
         }
 
-        /* ----------- FOOTER ----------- */
+        .photo:hover img {
+            transform: scale(1.08);
+            filter: brightness(1.15);
+        }
+
+        /* ---------------- FOOTER ---------------- */
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 50px;
             opacity: 0.5;
             font-size: 14px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -102,7 +115,7 @@
 
     <header>
         <h1>ANGULAR PHOTOS</h1>
-        <div class="subtitle">PHOTOS & VIDEOS — VISUAL STORYTELLER</div>
+        <div class="tagline">PHOTOS & VIDEOS — VISUAL STORYTELLER</div>
         <div class="bio">MCR ↔ VCE<br>Portfolio di Alberto Santinon</div>
     </header>
 
