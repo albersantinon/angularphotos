@@ -364,20 +364,23 @@
     }
 
     function layout() {
-      const gap     = parseInt(getComputedStyle(document.documentElement)
-                        .getPropertyValue('--gap')) || 12;
-      const cols    = getColumns();
-      const total   = gallery.offsetWidth;
-      const colW    = (total - gap * (cols - 1)) / cols;
-      const tops    = new Array(cols).fill(0); // tracks height of each column
+      // Read gap directly in px from the computed --gap value,
+      // falling back to 12 if parsing fails
+      const gapRaw = getComputedStyle(document.documentElement)
+                       .getPropertyValue('--gap').trim();
+      const gap    = parseFloat(gapRaw) || 12;
 
-      // Remove loading class so items switch to absolute positioning
+      const cols   = getColumns();
+      const pad    = parseFloat(getComputedStyle(gallery).paddingLeft) || gap;
+      const total  = gallery.offsetWidth - pad * 2;
+      const colW   = (total - gap * (cols - 1)) / cols;
+      const tops   = new Array(cols).fill(0);
+
       gallery.classList.remove('gallery--loading');
 
       items.forEach(item => {
-        // Place in the shortest column
         const col  = tops.indexOf(Math.min(...tops));
-        const left = col * (colW + gap);
+        const left = pad + col * (colW + gap);
         const top  = tops[col];
 
         item.style.width  = colW + 'px';
@@ -387,8 +390,7 @@
         tops[col] += item.offsetHeight + gap;
       });
 
-      // Set gallery height to tallest column
-      gallery.style.height = Math.max(...tops) + 'px';
+      gallery.style.height = Math.max(...tops) + pad + 'px';
     }
 
     // Add loading class before images arrive so items stack naturally
