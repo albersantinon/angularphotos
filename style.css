@@ -242,10 +242,13 @@ main { flex: 1; }
 }
 
 .about-text {
-  font-size:  var(--text-base);
+  font-size:   var(--text-base);
   line-height: 1.75;
   color:       var(--color-text);
   max-width:   var(--text-max);
+}
+.about-text + .about-text {
+  margin-top: 1.25rem;
 }
 
 /* ── Contact page ────────────────────────────────────────── */
