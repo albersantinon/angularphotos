@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Angular Photos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">ANGULAR PHOTOS</div>
+    <nav class="nav">
+      <a href="index.html">WORK</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </header>
+
+  <section class="about">
+    <h1>VISUAL PHOTOTELLER</h1>
+    <h2>Between Manchester and Venice</h2>
+  </section>
+
+  <footer class="footer">
+    <p>@angularphotos</p>
+    <p>© 2026 Angular Photos — All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
