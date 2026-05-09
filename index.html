@@ -141,30 +141,33 @@
     /* ── Gallery ─────────────────────────────────────────── */
     main { flex: 1; }
 
+    /* ── Masonry gallery ─────────────────────────────────── */
     .gallery {
       padding: var(--gap);
-      /* Responsive masonry-like grid:
-         - fills available width automatically
-         - minimum column width ~260px, max 1fr
-         - no media-query needed                */
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
-      gap: var(--gap);
+      /* CSS columns give us true masonry — images stack top-to-bottom
+         in each column, no gaps from mismatched heights              */
+      columns: 1;
+      column-gap: var(--gap);
     }
+
+    /* 2 columns from 480px, 3 from 900px */
+    @media (min-width: 480px)  { .gallery { columns: 2; } }
+    @media (min-width: 900px)  { .gallery { columns: 3; } }
 
     .gallery-item {
       display: block;
       overflow: hidden;
       border-radius: var(--radius);
       background: var(--color-surface);
-      /* No aspect-ratio — each image shows at its natural height
-         so portrait shots are never cropped */
+      /* break-inside prevents an image being split across two columns */
+      break-inside: avoid;
+      margin-bottom: var(--gap);
     }
 
     .gallery-item img {
       display: block;
       width: 100%;
-      height: auto;      /* natural height, not forced into a fixed box */
+      height: auto;   /* natural height — portrait images show in full */
       object-fit: cover;
       transition: transform .4s ease, filter .4s ease;
     }
