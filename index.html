@@ -141,33 +141,33 @@
     /* ── Gallery ─────────────────────────────────────────── */
     main { flex: 1; }
 
-    /* ── Masonry gallery ─────────────────────────────────── */
     .gallery {
+      position: relative; /* JS masonry uses absolute positioning inside */
       padding: var(--gap);
-      /* CSS columns give us true masonry — images stack top-to-bottom
-         in each column, no gaps from mismatched heights              */
-      columns: 1;
-      column-gap: var(--gap);
     }
 
-    /* 2 columns from 480px, 3 from 900px */
-    @media (min-width: 480px)  { .gallery { columns: 2; } }
-    @media (min-width: 900px)  { .gallery { columns: 3; } }
-
     .gallery-item {
-      display: block;
+      /* JS will set position:absolute, top, left, width */
+      position: absolute;
       overflow: hidden;
       border-radius: var(--radius);
       background: var(--color-surface);
-      /* break-inside prevents an image being split across two columns */
-      break-inside: avoid;
+      box-sizing: border-box;
+      transition: opacity .3s;
+    }
+    /* Before JS runs, stack items naturally so page isn't blank */
+    .gallery--loading .gallery-item {
+      position: relative;
+      width: 100%;
       margin-bottom: var(--gap);
+      top: auto !important;
+      left: auto !important;
     }
 
     .gallery-item img {
       display: block;
       width: 100%;
-      height: auto;   /* natural height — portrait images show in full */
+      height: auto;
       object-fit: cover;
       transition: transform .4s ease, filter .4s ease;
     }
@@ -325,7 +325,7 @@
   </footer>
 
   <script>
-    // ── Mobile nav toggle ───────────────────────────────────
+    // ── Mobile nav toggle ─────────────────────────────────
     const toggle = document.querySelector('.nav-toggle');
     const nav    = document.getElementById('main-nav');
 
@@ -336,7 +336,6 @@
       nav.classList.toggle('is-open', !open);
     });
 
-    // Close nav if user presses Escape
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && nav.classList.contains('is-open')) {
         toggle.setAttribute('aria-expanded', 'false');
@@ -346,12 +345,71 @@
       }
     });
 
-    // Close nav when a link inside it is clicked (single-page feel)
     nav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         toggle.setAttribute('aria-expanded', 'false');
         nav.classList.remove('is-open');
       });
+    });
+
+    // ── JS Masonry ────────────────────────────────────────
+    const gallery = document.querySelector('.gallery');
+    const items   = Array.from(gallery.querySelectorAll('.gallery-item'));
+
+    function getColumns() {
+      const w = gallery.offsetWidth;
+      if (w >= 900) return 3;
+      if (w >= 480) return 2;
+      return 1;
+    }
+
+    function layout() {
+      const gap     = parseInt(getComputedStyle(document.documentElement)
+                        .getPropertyValue('--gap')) || 12;
+      const cols    = getColumns();
+      const total   = gallery.offsetWidth;
+      const colW    = (total - gap * (cols - 1)) / cols;
+      const tops    = new Array(cols).fill(0); // tracks height of each column
+
+      // Remove loading class so items switch to absolute positioning
+      gallery.classList.remove('gallery--loading');
+
+      items.forEach(item => {
+        // Place in the shortest column
+        const col  = tops.indexOf(Math.min(...tops));
+        const left = col * (colW + gap);
+        const top  = tops[col];
+
+        item.style.width  = colW + 'px';
+        item.style.left   = left + 'px';
+        item.style.top    = top  + 'px';
+
+        tops[col] += item.offsetHeight + gap;
+      });
+
+      // Set gallery height to tallest column
+      gallery.style.height = Math.max(...tops) + 'px';
+    }
+
+    // Add loading class before images arrive so items stack naturally
+    gallery.classList.add('gallery--loading');
+
+    // Run layout once all images have loaded (handles portrait/landscape mix)
+    let loaded = 0;
+    const total = items.length;
+
+    items.forEach(item => {
+      const img = item.querySelector('img');
+      const done = () => { if (++loaded === total) layout(); };
+      if (img.complete) { done(); }
+      else { img.addEventListener('load', done); img.addEventListener('error', done); }
+    });
+
+    // Re-layout on resize (debounced)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layout, 100);
     });
   </script>
 

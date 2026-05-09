@@ -177,45 +177,8 @@ a {
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* ── Gallery ─────────────────────────────────────────────── */
+/* ── Gallery — layout handled by JS masonry in index.html ── */
 main { flex: 1; }
-
-.gallery {
-  padding: var(--gallery-gap);
-  display: grid;
-  /*
-    auto-fill: create as many columns as fit.
-    minmax(min(260px,100%), 1fr): each column is at least 260px
-    but never overflows a single-column mobile layout.
-    No breakpoint needed — the grid adapts continuously.
-  */
-  grid-template-columns: repeat(auto-fill, minmax(var(--gallery-min-col), 1fr));
-  gap: var(--gallery-gap);
-}
-
-.gallery-item {
-  display:       block;
-  overflow:      hidden;
-  border-radius: var(--radius);
-  background:    var(--color-surface); /* placeholder colour while image loads */
-  /* No aspect-ratio here — let each image keep its natural proportions.
-     Portrait shots will be taller, landscape shots shorter, which is
-     correct for a photography portfolio. */
-}
-
-.gallery-item img {
-  width:      100%;
-  height:     auto;        /* natural height — portrait images won't be cropped */
-  object-fit: cover;
-  transition: transform var(--duration-mid) var(--ease-out),
-              filter    var(--duration-mid) var(--ease-out);
-}
-
-.gallery-item:hover img,
-.gallery-item:focus-within img {
-  transform: scale(1.04);
-  filter:    brightness(1.08);
-}
 
 /* ── About page ──────────────────────────────────────────── */
 .about {
