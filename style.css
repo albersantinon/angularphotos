@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  background: #FFFFFF;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 500;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.editorial-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .editorial-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 320px;
+  }
+
+  .grid-item.tall { grid-row: span 2; }
+  .grid-item.wide { grid-column: span 2; }
+  .grid-item.large { grid-column: span 2; grid-row: span 2; }
+}
+
+.about {
+  text-align: center;
+  padding: 6rem 1rem;
+}
+
+.about h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.about h2 {
+  font-weight: 500;
+  color: #4A4A4A;
+}
+
+.contact {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.contact a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #4A4A4A;
+  border-top: 1px solid #E0E0E0;
+}
