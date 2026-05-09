@@ -1,152 +1,37 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANGULAR PHOTOS — Cinematic Portfolio</title>
-
-    <!-- Helvetica Neue (fallback Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <style>
-        /* ---------------- GLOBAL ---------------- */
-        body {
-            margin: 0;
-            font-family: "Helvetica Neue", Inter, sans-serif;
-            background: #000;
-            color: #f2f2f2;
-            overflow-x: hidden;
-        }
-
-        /* Background cinematic blurred texture */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=60');
-            background-size: cover;
-            background-position: center;
-            filter: blur(22px) brightness(0.35) saturate(0.8);
-            z-index: -1;
-        }
-
-        /* Fade-in animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ---------------- HERO ---------------- */
-        header {
-            text-align: center;
-            padding: 80px 20px 50px;
-            animation: fadeIn 1.2s ease forwards;
-        }
-
-        h1 {
-            font-size: 42px;
-            font-weight: 600;
-            letter-spacing: 5px;
-            margin: 0;
-        }
-
-        .tagline {
-            margin-top: 14px;
-            font-size: 16px;
-            opacity: 0.75;
-            letter-spacing: 1.5px;
-        }
-
-        .bio {
-            margin-top: 20px;
-            font-size: 15px;
-            opacity: 0.65;
-            line-height: 1.6;
-        }
-
-        /* ---------------- GALLERY ---------------- */
-        .gallery {
-            padding: 20px 14px 60px;
-            max-width: 1400px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            animation: fadeIn 1.4s ease forwards;
-        }
-
-        @media (min-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 24px;
-                padding: 40px 20px 80px;
-            }
-            h1 { font-size: 64px; }
-            .tagline { font-size: 20px; }
-            .bio { font-size: 18px; }
-        }
-
-        .photo {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.45);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease, filter 0.6s ease;
-        }
-
-        .photo:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 50px rgba(0,0,0,0.6);
-        }
-
-        .photo:hover img {
-            transform: scale(1.08);
-            filter: brightness(1.15);
-        }
-
-        /* ---------------- FOOTER ---------------- */
-        footer {
-            text-align: center;
-            padding: 40px;
-            opacity: 0.5;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angular Photos — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <header>
-        <h1>ANGULAR PHOTOS</h1>
-        <div class="tagline">PHOTOS & VIDEOS — VISUAL STORYTELLER</div>
-        <div class="bio">MCR ↔ VCE<br>Portfolio di Alberto Santinon</div>
-    </header>
+  <header class="header">
+    <div class="logo">ANGULAR PHOTOS</div>
+    <nav class="nav">
+      <a href="index.html">WORK</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </header>
 
-    <section class="gallery">
+  <section class="editorial-grid">
+    <div class="grid-item tall"><img src="images/uno.jpg" alt=""></div>
+    <div class="grid-item wide"><img src="images/due.jpeg" alt=""></div>
+    <div class="grid-item"><img src="images/tre.jpeg" alt=""></div>
+    <div class="grid-item large"><img src="images/quattro.jpg" alt=""></div>
+    <div class="grid-item tall"><img src="images/sei.jpg" alt=""></div>
+    <div class="grid-item wide"><img src="images/sette.jpg" alt=""></div>
+    <div class="grid-item"><img src="images/otto.jpg" alt=""></div>
+  </section>
 
-        <!-- FOTO REALI DELLA TUA CARTELLA -->
-        <div class="photo"><img src="images/uno.jpg" alt=""></div>
-        <div class="photo"><img src="images/due.jpeg" alt=""></div>
-        <div class="photo"><img src="images/tre.jpeg" alt=""></div>
-        <div class="photo"><img src="images/quattro.jpg" alt=""></div>
-        <div class="photo"><img src="images/sei.jpg" alt=""></div>
-        <div class="photo"><img src="images/sette.jpg" alt=""></div>
-        <div class="photo"><img src="images/otto.jpg" alt=""></div>
-        <div class="photo"><img src="images/nove.jpg" alt=""></div>
-
-    </section>
-
-    <footer>
-        © 2026 ANGULAR PHOTOS — All Rights Reserved
-    </footer>
+  <footer class="footer">
+    <p>@angularphotos</p>
+    <p>© 2026 Angular Photos — All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
