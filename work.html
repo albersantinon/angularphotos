@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Angular Photos — work. Music, events and documentary photography.">
+  <meta name="theme-color" content="#080808">
+  <title>Work — Angular Photos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Gallery styles (inline, self-contained) ─────────── */
+    .gallery {
+      position: relative;
+      padding: var(--gap);
+    }
+    .gallery-item {
+      position: absolute;
+      overflow: hidden;
+      background: var(--color-surface);
+      box-sizing: border-box;
+    }
+    .gallery--loading .gallery-item {
+      position: relative;
+      width: 100%;
+      margin-bottom: var(--gap);
+      top: auto !important;
+      left: auto !important;
+    }
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      filter: brightness(.88);
+      transition: transform .45s cubic-bezier(.25,.1,.25,1),
+                  filter    .45s cubic-bezier(.25,.1,.25,1);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1);
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#gallery">Skip to gallery</a>
+
+  <header class="header" role="banner">
+    <a href="index.html" class="logo" aria-label="Angular Photos — home">ANGULAR PHOTOS</a>
+    <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <nav id="main-nav" class="nav" aria-label="Main navigation">
+      <a href="work.html" aria-current="page">WORK</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="gallery" id="gallery" aria-label="Photography portfolio">
+      <a href="images/church.jpg" class="gallery-item">
+        <img src="images/church.jpg" fetchpriority="high" alt="Church exterior with moody lighting">
+      </a>
+      <a href="images/elastic.jpg" class="gallery-item">
+        <img src="images/elastic.jpg" alt="Elastic band stretched in motion">
+      </a>
+      <a href="images/anezina.jpg" class="gallery-item">
+        <img src="images/anezina.jpg" alt="Anezina portrait">
+      </a>
+      <a href="images/goat4.jpg" class="gallery-item">
+        <img src="images/goat4.jpg" alt="Goat in natural setting">
+      </a>
+      <a href="images/homee.jpg" class="gallery-item">
+        <img src="images/homee.jpg" alt="Home Club">
+      </a>
+      <a href="images/ieia.jpg" class="gallery-item">
+        <img src="images/ieia.jpg" alt="Ieia at Club27">
+      </a>
+      <a href="images/queer.jpeg" class="gallery-item">
+        <img src="images/queer.jpeg" alt="Queer night CSO Django">
+      </a>
+      <a href="images/tre.jpeg" class="gallery-item">
+        <img src="images/tre.jpeg" alt="Wax Head promo shot">
+      </a>
+      <a href="images/granny.jpg" class="gallery-item">
+        <img src="images/granny.jpg" alt="Elderly woman walking in Venice">
+      </a>
+      <a href="images/drummer.jpg" class="gallery-item">
+        <img src="images/drummer.jpg" alt="Drummer mid-performance on stage">
+      </a>
+      <a href="images/bosco.jpg" class="gallery-item">
+        <img src="images/bosco.jpg" alt="Hazy woodland scene with soft light">
+      </a>
+      <a href="images/brogo.jpg" class="gallery-item">
+        <img src="images/brogo.jpg" alt="Crowdsurfing">
+      </a>
+      <a href="images/club27.jpg" class="gallery-item">
+        <img src="images/club27.jpg" alt="Club 27 scene">
+      </a>
+      <a href="images/kid.jpg" class="gallery-item">
+        <img src="images/kid.jpg" alt="Child on top of his mum's shoulders at a concert">
+      </a>
+      <a href="images/phantoms.jpg" class="gallery-item">
+        <img src="images/phantoms.jpg" alt="Ghostly figures in low light">
+      </a>
+      <a href="images/jake.jpg" class="gallery-item">
+        <img src="images/jake.jpg" alt="Portrait of Jake">
+      </a>
+      <a href="images/pontile.jpg" class="gallery-item">
+        <img src="images/pontile.jpg" alt="Pier extending over calm water">
+      </a>
+      <a href="images/cheuk.jpg" class="gallery-item">
+        <img src="images/cheuk.jpg" alt="Portrait of Cheuk">
+      </a>
+      <a href="images/pinkroom.jpg" class="gallery-item">
+        <img src="images/pinkroom.jpg" alt="Bubbletea and cigarettes playing pink room in Manchester">
+      </a>
+      <a href="images/whitehotel.jpg" class="gallery-item">
+        <img src="images/whitehotel.jpg" alt="Slap Rash playing at the White Hotel in Manchester">
+      </a>
+      <a href="images/waxx.jpeg" class="gallery-item">
+        <img src="images/waxx.jpeg" alt="Wax Head promo shot in Manchester">
+      </a>
+      <a href="images/sherwood.jpg" class="gallery-item">
+        <img src="images/sherwood.jpg" alt="Sherwood Festival in Padua">
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <p><a href="https://instagram.com/angularphotos" aria-label="Angular Photos on Instagram">@angularphotos</a></p>
+    <p>© 2026 Angular Photos</p>
+  </footer>
+
+  <script>
+    // ── Nav toggle ────────────────────────────────────────
+    const toggle = document.querySelector('.nav-toggle');
+    const nav    = document.getElementById('main-nav');
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      toggle.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
+      nav.classList.toggle('is-open', !open);
+      document.body.style.overflow = open ? '' : 'hidden';
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        document.body.style.overflow = '';
+        toggle.focus();
+      }
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── JS Masonry ────────────────────────────────────────
+    const gallery = document.querySelector('.gallery');
+    const items   = Array.from(gallery.querySelectorAll('.gallery-item'));
+
+    function getColumns() {
+      const w = gallery.offsetWidth;
+      if (w >= 900) return 3;
+      if (w >= 480) return 2;
+      return 1;
+    }
+
+    function layout() {
+      const gapRaw = getComputedStyle(document.documentElement)
+                       .getPropertyValue('--gap').trim();
+      const gap  = parseFloat(gapRaw) || 4;
+      const cols = getColumns();
+      const pad  = parseFloat(getComputedStyle(gallery).paddingLeft) || gap;
+      const total = gallery.offsetWidth - pad * 2;
+      const colW  = (total - gap * (cols - 1)) / cols;
+      const tops  = new Array(cols).fill(0);
+
+      gallery.classList.remove('gallery--loading');
+
+      items.forEach(item => {
+        const col  = tops.indexOf(Math.min(...tops));
+        const left = pad + col * (colW + gap);
+        const top  = tops[col];
+        item.style.width  = colW + 'px';
+        item.style.left   = left + 'px';
+        item.style.top    = top  + 'px';
+        tops[col] += item.offsetHeight + gap;
+      });
+
+      gallery.style.height = Math.max(...tops) + pad + 'px';
+    }
+
+    gallery.classList.add('gallery--loading');
+    gallery.style.opacity = '0';
+
+    function waitForImages(imgs, cb) {
+      let remaining = imgs.length;
+      if (remaining === 0) { cb(); return; }
+      imgs.forEach(img => {
+        const check = () => {
+          if (img.naturalHeight > 0) {
+            if (--remaining === 0) cb();
+          } else {
+            setTimeout(check, 50);
+          }
+        };
+        if (img.complete) { check(); }
+        else {
+          img.addEventListener('load',  check);
+          img.addEventListener('error', () => { if (--remaining === 0) cb(); });
+        }
+      });
+    }
+
+    waitForImages(items.map(i => i.querySelector('img')), () => {
+      layout();
+      gallery.style.transition = 'opacity .6s ease';
+      gallery.style.opacity    = '1';
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layout, 100);
+    });
+  </script>
+
+</body>
+</html>
