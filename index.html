@@ -10,117 +10,90 @@
   <meta property="og:description" content="Music, events and documentary photography between Manchester and Venice.">
   <meta property="og:url" content="https://angularphotos.com/">
   <title>Angular Photos</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+
   <style>
-    html, body { height: 100%; overflow: hidden; }
+    /* ───────────────────────────────────────────────
+       HOME GRID — MOBILE (2 COLONNE) + DESKTOP (3 COLONNE)
+       ─────────────────────────────────────────────── */
 
-    /* Header sits on top of everything — high z-index, subtle gradient so
-       logo stays readable over bright images */
-    .header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 500;
-      background: linear-gradient(to bottom, rgba(8,8,8,.85) 0%, transparent 100%);
-      border: none;
+    .home-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      padding: var(--gap);
+      margin-top: var(--gap);
     }
 
-    /* Slideshow fills everything BELOW the header */
-    .slideshow {
-      position: fixed;
-      inset: 0;
-      background: var(--color-bg);
-    }
-
-    /* Each slide — cover the full viewport, image fills it */
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity .7s ease;
-      pointer-events: none;
-    }
-    .slide.is-active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* Image fills the whole slide, cropped to fit — works for both
-       portrait and landscape without black bars */
-    .slide img {
+    .home-item img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
       object-fit: cover;
-      object-position: center;
-      user-select: none;
-      -webkit-user-drag: none;
+      filter: brightness(.88);
+      transition: transform var(--duration-mid) var(--ease),
+                  filter var(--duration-mid) var(--ease);
     }
 
-    /* Invisible click zones — left half prev, right half next
-       Start below the header so logo/hamburger remain clickable */
-    .zone {
-      position: fixed;
-      top: var(--header-h);
-      bottom: 0;
-      z-index: 400;
-      width: 50%;
-    }
-    .zone--prev { left: 0;  cursor: w-resize; }
-    .zone--next { right: 0; cursor: e-resize; }
-
-    /* Slide counter — bottom centre */
-    .slide-counter {
-      position: fixed;
-      bottom: clamp(1.2rem, 4vh, 2.5rem);
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 500;
-      font-family: var(--font-body);
-      font-size: var(--text-xs);
-      font-weight: 400;
-      letter-spacing: .2em;
-      color: rgba(240,236,224,.5);
-      pointer-events: none;
-      white-space: nowrap;
+    .home-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1);
     }
 
-    /* WORK link — bottom right, appears after delay */
-    .work-link {
-      position: fixed;
-      bottom: clamp(1.2rem, 4vh, 2.5rem);
-      right: clamp(var(--space-sm), 4vw, 2.5rem);
-      z-index: 500;
-      font-family: var(--font-body);
-      font-size: var(--text-xs);
-      font-weight: 400;
-      letter-spacing: .2em;
-      color: rgba(240,236,224,.5);
-      text-transform: uppercase;
-      opacity: 0;
-      transition: color var(--duration-fast), opacity .8s ease;
+    /* Asimmetria mobile */
+    .home-item:nth-child(3) {
+      grid-column: span 2; /* immagine larga */
     }
-    .work-link.is-visible { opacity: 1; }
-    .work-link:hover { color: var(--color-text); }
 
-    /* Nav and toggle sit above click zones */
-    .nav        { z-index: 600; }
-    .nav-toggle { z-index: 700; position: relative; }
-    .logo       { z-index: 700; position: relative; }
+    .home-item:nth-child(5) {
+      grid-row: span 2; /* immagine verticale più alta */
+    }
+
+    /* ───────────────────────────────────────────────
+       DESKTOP — 3 COLONNE EDITORIALI
+       ─────────────────────────────────────────────── */
+    @media (min-width: 900px) {
+      .home-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: calc(var(--gap) * 2);
+        padding: calc(var(--gap) * 2);
+        max-width: 1600px;
+        margin-inline: auto;
+      }
+
+      .home-item:nth-child(1) {
+        grid-row: span 2; /* verticale alta */
+      }
+
+      .home-item:nth-child(3) {
+        grid-column: span 2; /* orizzontale larga */
+      }
+
+      .home-item:nth-child(5) {
+        grid-row: span 2; /* verticale alta */
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <a class="skip-link" href="work.html">Skip to gallery</a>
 
   <header class="header" role="banner">
     <a href="index.html" class="logo" aria-label="Angular Photos — home">ANGULAR PHOTOS</a>
+
     <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation menu">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </button>
+
     <nav id="main-nav" class="nav" aria-label="Main navigation">
       <a href="work.html">WORK</a>
       <a href="about.html">ABOUT</a>
@@ -128,46 +101,40 @@
     </nav>
   </header>
 
-  <main class="slideshow" id="slideshow" aria-label="Photography slideshow">
-    <div class="slide is-active" aria-hidden="false">
-      <img src="images/drummer.jpg"    alt="Drummer mid-performance on stage" fetchpriority="high">
-    </div>
-    <div class="slide" aria-hidden="true">
-      <img src="images/granny.jpg"     alt="Elderly woman walking in Venice">
-    </div>
-    <div class="slide" aria-hidden="true">
+  <!-- ───────────────────────────────────────────────
+       HOME GRID — sostituisce lo slideshow
+       ─────────────────────────────────────────────── -->
+  <main class="home-grid">
+    <a href="work.html" class="home-item">
+      <img src="images/drummer.jpg" alt="Drummer mid-performance on stage">
+    </a>
+
+    <a href="work.html" class="home-item">
+      <img src="images/granny.jpg" alt="Elderly woman walking in Venice">
+    </a>
+
+    <a href="work.html" class="home-item">
       <img src="images/whitehotel.jpg" alt="Slap Rash playing at the White Hotel in Manchester">
-    </div>
-    <div class="slide" aria-hidden="true">
-      <img src="images/elastic.jpg"    alt="Elastic band stretched in motion">
-    </div>
-    <div class="slide" aria-hidden="true">
-      <img src="images/sherwood.jpg"   alt="Sherwood Festival in Padua">
-    </div>
-    <div class="slide" aria-hidden="true">
-      <img src="images/goat4.jpg"      alt="Goat in natural setting">
-    </div>
-    <div class="slide" aria-hidden="true">
-      <img src="images/phantoms.jpg"   alt="Ghostly figures in low light">
-    </div>
+    </a>
+
+    <a href="work.html" class="home-item">
+      <img src="images/elastic.jpg" alt="Elastic band stretched in motion">
+    </a>
+
+    <a href="work.html" class="home-item">
+      <img src="images/sherwood.jpg" alt="Sherwood Festival in Padua">
+    </a>
   </main>
 
-  <!-- Click zones -->
-  <div class="zone zone--prev" id="zone-prev" role="button" aria-label="Previous image" tabindex="0"></div>
-  <div class="zone zone--next" id="zone-next" role="button" aria-label="Next image"     tabindex="0"></div>
-
-  <!-- Counter -->
-  <p class="slide-counter" aria-live="polite">
-    <span id="counter-current">01</span>&nbsp;/&nbsp;<span id="counter-total">07</span>
-  </p>
-
-  <!-- WORK link -->
-  <a href="work.html" class="work-link" id="work-link">WORK →</a>
+  <footer class="footer">
+    <span>© Angular Photos</span>
+    <a href="https://instagram.com/angularphotos" target="_blank">@angularphotos</a>
+  </footer>
 
   <script>
-    // ── Nav toggle ────────────────────────────────────────
+    /* NAV TOGGLE — identico al tuo */
     const toggle = document.querySelector('.nav-toggle');
-    const nav    = document.getElementById('main-nav');
+    const nav = document.getElementById('main-nav');
 
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') === 'true';
@@ -189,59 +156,6 @@
         toggle.setAttribute('aria-expanded', 'false');
         nav.classList.remove('is-open');
       });
-    });
-
-    // ── Slideshow ─────────────────────────────────────────
-    const slides     = Array.from(document.querySelectorAll('.slide'));
-    const counterEl  = document.getElementById('counter-current');
-    const totalEl    = document.getElementById('counter-total');
-    const workLink   = document.getElementById('work-link');
-    const zonePrev   = document.getElementById('zone-prev');
-    const zoneNext   = document.getElementById('zone-next');
-
-    let current = 0;
-    totalEl.textContent = String(slides.length).padStart(2, '0');
-
-    function goTo(index) {
-      slides[current].classList.remove('is-active');
-      slides[current].setAttribute('aria-hidden', 'true');
-      current = (index + slides.length) % slides.length;
-      slides[current].classList.add('is-active');
-      slides[current].setAttribute('aria-hidden', 'false');
-      counterEl.textContent = String(current + 1).padStart(2, '0');
-      // Show WORK link once user starts exploring
-      workLink.classList.add('is-visible');
-    }
-
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-
-    // Show WORK link after 3s even if user hasn't clicked
-    setTimeout(() => workLink.classList.add('is-visible'), 3000);
-
-    // Click zones
-    zoneNext.addEventListener('click', next);
-    zonePrev.addEventListener('click', prev);
-
-    // Keyboard
-    document.addEventListener('keydown', e => {
-      if (nav.classList.contains('is-open')) return;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
-      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prev();
-    });
-
-    zonePrev.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') prev(); });
-    zoneNext.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') next(); });
-
-    // Touch swipe
-    let touchStartX = 0;
-    document.addEventListener('touchstart', e => {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-    document.addEventListener('touchend', e => {
-      if (nav.classList.contains('is-open')) return;
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
     });
   </script>
 
