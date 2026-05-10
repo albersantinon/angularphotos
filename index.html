@@ -1,163 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Angular Photos — music, events and documentary photography between Manchester and Venice.">
-  <meta name="theme-color" content="#080808">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Angular Photos">
-  <meta property="og:description" content="Music, events and documentary photography between Manchester and Venice.">
-  <meta property="og:url" content="https://angularphotos.com/">
-  <title>Angular Photos</title>
+<main class="home-grid">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <a href="work.html" class="home-item">
+    <img src="images/drummer.jpg" alt="Drummer mid-performance on stage">
+  </a>
 
-  <link rel="stylesheet" href="style.css">
+  <a href="work.html" class="home-item">
+    <img src="images/granny.jpg" alt="Elderly woman walking in Venice">
+  </a>
 
-  <style>
-    /* ───────────────────────────────────────────────
-       HOME GRID — MOBILE (2 COLONNE) + DESKTOP (3 COLONNE)
-       ─────────────────────────────────────────────── */
+  <a href="work.html" class="home-item">
+    <img src="images/whitehotel.jpg" alt="Slap Rash playing at the White Hotel in Manchester">
+  </a>
 
-    .home-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--gap);
-      padding: var(--gap);
-      margin-top: var(--gap);
-    }
+  <a href="work.html" class="home-item">
+    <img src="images/elastic.jpg" alt="Elastic band stretched in motion">
+  </a>
 
-    .home-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      filter: brightness(.88);
-      transition: transform var(--duration-mid) var(--ease),
-                  filter var(--duration-mid) var(--ease);
-    }
+  <a href="work.html" class="home-item">
+    <img src="images/goat4.jpg" alt="Goat in natural setting">
+  </a>
 
-    .home-item:hover img {
-      transform: scale(1.04);
-      filter: brightness(1);
-    }
+  <a href="work.html" class="home-item">
+    <img src="images/ieia.jpg" alt="Portrait or scene from IEIA series">
+  </a>
 
-    /* Asimmetria mobile */
-    .home-item:nth-child(3) {
-      grid-column: span 2; /* immagine larga */
-    }
-
-    .home-item:nth-child(5) {
-      grid-row: span 2; /* immagine verticale più alta */
-    }
-
-    /* ───────────────────────────────────────────────
-       DESKTOP — 3 COLONNE EDITORIALI
-       ─────────────────────────────────────────────── */
-    @media (min-width: 900px) {
-      .home-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: calc(var(--gap) * 2);
-        padding: calc(var(--gap) * 2);
-        max-width: 1600px;
-        margin-inline: auto;
-      }
-
-      .home-item:nth-child(1) {
-        grid-row: span 2; /* verticale alta */
-      }
-
-      .home-item:nth-child(3) {
-        grid-column: span 2; /* orizzontale larga */
-      }
-
-      .home-item:nth-child(5) {
-        grid-row: span 2; /* verticale alta */
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <a class="skip-link" href="work.html">Skip to gallery</a>
-
-  <header class="header" role="banner">
-    <a href="index.html" class="logo" aria-label="Angular Photos — home">ANGULAR PHOTOS</a>
-
-    <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation menu">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
-
-    <nav id="main-nav" class="nav" aria-label="Main navigation">
-      <a href="work.html">WORK</a>
-      <a href="about.html">ABOUT</a>
-      <a href="contact.html">CONTACT</a>
-    </nav>
-  </header>
-
-  <!-- ───────────────────────────────────────────────
-       HOME GRID — sostituisce lo slideshow
-       ─────────────────────────────────────────────── -->
-  <main class="home-grid">
-    <a href="work.html" class="home-item">
-      <img src="images/drummer.jpg" alt="Drummer mid-performance on stage">
-    </a>
-
-    <a href="work.html" class="home-item">
-      <img src="images/granny.jpg" alt="Elderly woman walking in Venice">
-    </a>
-
-    <a href="work.html" class="home-item">
-      <img src="images/whitehotel.jpg" alt="Slap Rash playing at the White Hotel in Manchester">
-    </a>
-
-    <a href="work.html" class="home-item">
-      <img src="images/elastic.jpg" alt="Elastic band stretched in motion">
-    </a>
-
-    <a href="work.html" class="home-item">
-      <img src="images/sherwood.jpg" alt="Sherwood Festival in Padua">
-    </a>
-  </main>
-
-  <footer class="footer">
-    <span>© Angular Photos</span>
-    <a href="https://instagram.com/angularphotos" target="_blank">@angularphotos</a>
-  </footer>
-
-  <script>
-    /* NAV TOGGLE — identico al tuo */
-    const toggle = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('main-nav');
-
-    toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!open));
-      toggle.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
-      nav.classList.toggle('is-open', !open);
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-        toggle.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
-        toggle.focus();
-      }
-    });
-
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        toggle.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
-      });
-    });
-  </script>
-
-</body>
-</html>
+</main>
